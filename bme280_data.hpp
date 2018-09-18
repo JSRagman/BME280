@@ -54,7 +54,7 @@ struct CalParams
 
     uint8_t   h1;
      int16_t  h2;
-     uint8_t   h3;
+    uint8_t   h3;
      int16_t  h4;
      int16_t  h5;
      int8_t   h6;
