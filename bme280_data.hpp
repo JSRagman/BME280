@@ -1,3 +1,4 @@
+```
 /*
  * bme280_data.hpp
  *
@@ -35,34 +36,33 @@ namespace bosch_bme280
  */
 struct CalParams
 {
-	uint16_t  t1;
-	 int16_t  t2;
-	 int16_t  t3;
+    uint16_t  t1;
+     int16_t  t2;
+     int16_t  t3;
 
-	 int32_t  tfine;
+     int32_t  tfine;
 
-	uint16_t  p1;
-	 int16_t  p2;
-	 int16_t  p3;
-	 int16_t  p4;
-	 int16_t  p5;
-	 int16_t  p6;
-	 int16_t  p7;
-	 int16_t  p8;
-	 int16_t  p9;
+    uint16_t  p1;
+     int16_t  p2;
+     int16_t  p3;
+     int16_t  p4;
+     int16_t  p5;
+     int16_t  p6;
+     int16_t  p7;
+     int16_t  p8;
+     int16_t  p9;
 
-	uint8_t   h1;
-	 int16_t  h2;
-	uint8_t   h3;
-	 int16_t  h4;
-	 int16_t  h5;
-	 int8_t   h6;
+    uint8_t   h1;
+     int16_t  h2;
+     uint8_t   h3;
+     int16_t  h4;
+     int16_t  h5;
+     int8_t   h6;
 
-	bool loaded;
+    bool loaded;
 
-	CalParams();
+    CalParams();
 };
-
 
 /*
  * struct SensorData
@@ -79,13 +79,13 @@ struct CalParams
  */
 struct TPH32SensorData
 {
-	time_t  timestamp;
+    time_t  timestamp;
 
-	uint32_t  temperature;
-	uint32_t  pressure;
-	uint32_t  humidity;
+    uint32_t  temperature;
+    uint32_t  pressure;
+    uint32_t  humidity;
 
-	TPH32SensorData ( );
+    TPH32SensorData ( );
 };
 
 
@@ -107,13 +107,13 @@ struct TPH32SensorData
  */
 struct TPH32CompData
 {
-	time_t timestamp;
+    time_t timestamp;
 
-	int32_t temperature;
-	int32_t pressure;
-	int32_t humidity;
+    int32_t temperature;
+    int32_t pressure;
+    int32_t humidity;
 
-	TPH32CompData ( );
+    TPH32CompData ( );
 };
 
 /*
@@ -131,13 +131,13 @@ struct TPH32CompData
  */
 struct TPH32Summary
 {
-	time_t   timestart;
-	time_t   timestop;
-	int      samplecount;
+    time_t   timestart;
+    time_t   timestop;
+    int      samplecount;
 
-	int32_t high;
-	int32_t low;
-	double  average;
+    int32_t high;
+    int32_t low;
+    double  average;
 };
 
 /*
@@ -149,30 +149,28 @@ struct TPH32Summary
  */
 class TPH32DataQueue
 {
-
   protected:
-	std::deque<TPH32CompData> dq;
-	unsigned int qcap;
+    std::deque<TPH32CompData> dq;
+    unsigned int qcap;
 
-	int32_t t_high, t_low;
-	int32_t p_high, p_low;
-	int32_t h_high, h_low;
+    int32_t t_high, t_low;
+    int32_t p_high, p_low;
+    int32_t h_high, h_low;
 
-	double t_avg, p_avg, h_avg;
-	bool   stale;
+    double t_avg, p_avg, h_avg;
+    bool   stale;
 
   public:
+    std::mutex mtx;
 
-	std::mutex mtx;
+    TPH32DataQueue ( unsigned int capacity=60 );
 
-	TPH32DataQueue ( unsigned int capacity=60 );
+    TPH32CompData back  ();
+    TPH32CompData front ();
+    TPH32CompData pop   ();
 
-	TPH32CompData back  ();
-	TPH32CompData front ();
-	TPH32CompData pop   ();
-
-	void  push   ( TPH32CompData data );
-	void  resize ( int newcapacity );
+    void  push   ( TPH32CompData data );
+    void  resize ( int newcapacity );
 
     int   capacity ();
     void  clear ();
@@ -194,7 +192,6 @@ class TPH32DataQueue
     int32_t  humidity_high();
     int32_t  humidity_low();
     double   humidity_average();
-
 };
 
 
@@ -218,13 +215,13 @@ class TPH32DataQueue
  */
 struct TPHDoubleCompData
 {
-	time_t timestamp;
+    time_t timestamp;
 
-	double temperature;
-	double pressure;
-	double humidity;
+    double temperature;
+    double pressure;
+    double humidity;
 
-	TPHDoubleCompData ( );
+    TPHDoubleCompData ( );
 };
 
 /*
@@ -242,13 +239,13 @@ struct TPHDoubleCompData
  */
 struct TPHDoubleSummary
 {
-	time_t   timestart;
-	time_t   timestop;
-	int      samplecount;
+    time_t   timestart;
+    time_t   timestop;
+    int      samplecount;
 
-	double  high;
-	double  low;
-	double  average;
+    double  high;
+    double  low;
+    double  average;
 };
 
 /*
@@ -260,30 +257,28 @@ struct TPHDoubleSummary
  */
 class TPHDoubleDataQueue
 {
-
   protected:
-	std::deque<TPHDoubleCompData> dq;
-	unsigned int qcap;
+    std::deque<TPHDoubleCompData> dq;
+    unsigned int qcap;
 
-	double t_high, t_low;
-	double p_high, p_low;
-	double h_high, h_low;
+    double t_high, t_low;
+    double p_high, p_low;
+    double h_high, h_low;
 
-	double t_avg, p_avg, h_avg;
-	bool   stale;
+    double t_avg, p_avg, h_avg;
+    bool   stale;
 
   public:
+    std::mutex mtx;
 
-	std::mutex mtx;
+    TPHDoubleDataQueue ( unsigned int capacity=60 );
 
-	TPHDoubleDataQueue ( unsigned int capacity=60 );
+    TPHDoubleCompData back  ();
+    TPHDoubleCompData front ();
+    TPHDoubleCompData pop   ();
 
-	TPHDoubleCompData back  ();
-	TPHDoubleCompData front ();
-	TPHDoubleCompData pop   ();
-
-	void  push   ( TPHDoubleCompData data );
-	void  resize ( int newcapacity );
+    void  push   ( TPHDoubleCompData data );
+    void  resize ( int newcapacity );
 
     int   capacity ();
     void  clear ();
@@ -305,45 +300,9 @@ class TPHDoubleDataQueue
     double  humidity_high();
     double  humidity_low();
     double  humidity_average();
-
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 } // namespace bosch_bme280
 
-
 #endif /* BME280_DATA_HPP_ */
+```
