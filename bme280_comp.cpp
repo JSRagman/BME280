@@ -96,6 +96,9 @@ int32_t BME280::Comp32FixedTemp(uint32_t unctemp)
  * Parameters:
  *   uncpress - an uncompensated pressure value
  *
+ * Returns:
+ *   Returns barometric pressure, in pascals (Pa).
+ *
  * Namespace:
  *   bosch_bme280
  *
@@ -154,6 +157,10 @@ uint32_t BME280::Comp32FixedPress(uint32_t uncpress)
  * Parameters:
  *   unchum - an uncompensated humidity value
  *
+ * Returns
+ *   Returns a 32-bit integer which, when divided by 1024, yields
+ *   percent relative humidity.
+ *
  * Namespace:
  *   bosch_bme280
  *
@@ -200,6 +207,9 @@ uint32_t BME280::Comp32FixedHumid(uint32_t unchum)
  * Parameters:
  *   unctemp - an uncompensated temperature value
  *
+ * Returns:
+ *   Returns temperature, in degrees centigrade.
+ *
  * Namespace:
  *   bosch_bme280
  *
@@ -245,6 +255,9 @@ double BME280::CompDoubleTemp(uint32_t unctemp)
  *
  * Parameters:
  *   uncpress - an uncompensated pressure value
+ *
+ * Returns:
+ *   Returns barometric pressure, in pascals (Pa).
  *
  * Namespace:
  *   bosch_bme280
@@ -299,6 +312,9 @@ double BME280::CompDoublePress(uint32_t uncpress)
  *
  * Parameters:
  *   unchum - an uncompensated humidity value
+ *
+ * Returns:
+ *   Returns percent relative humidity.
  *
  * Namespace:
  *   bosch_bme280
