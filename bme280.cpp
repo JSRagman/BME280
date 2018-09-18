@@ -1,3 +1,4 @@
+```
 /*
  * bme280.cpp
  *
@@ -73,9 +74,9 @@ namespace bosch_bme280
  */
 BME280::BME280(I2CBus* bus, uint8_t addr)
 {
-	chipid  = 0;
-	i2cbus  = bus;
-	i2caddr = addr;
+    chipid  = 0;
+    i2cbus  = bus;
+    i2caddr = addr;
 }
 
 /*
@@ -144,7 +145,7 @@ void BME280::GetRegs(uint8_t regaddr, uint8_t* data, int len)
  */
 void BME280::SetRegs(uint8_t* data, int len)
 {
-	i2cbus->Write(data, len, i2caddr);
+    i2cbus->Write(data, len, i2caddr);
 }
 
 
@@ -166,42 +167,42 @@ void BME280::SetRegs(uint8_t* data, int len)
  */
 void BME280::LoadCalParams()
 {
-	uint8_t tpcparams[BME280_TPCAL_SIZE] {0};
-	uint8_t hucparams[BME280_HUCAL_SIZE] {0};
+    uint8_t tpcparams[BME280_TPCAL_SIZE] {0};
+    uint8_t hucparams[BME280_HUCAL_SIZE] {0};
 
-	this->GetRegs(BME280_TPCAL_START, tpcparams, BME280_TPCAL_SIZE);
-	this->GetRegs(BME280_HUCAL_START, hucparams, BME280_HUCAL_SIZE);
+    this->GetRegs(BME280_TPCAL_START, tpcparams, BME280_TPCAL_SIZE);
+    this->GetRegs(BME280_HUCAL_START, hucparams, BME280_HUCAL_SIZE);
 
-	cparams.t1 =          (((uint16_t)tpcparams[1] << 8) | (uint16_t)tpcparams[0]);
-	cparams.t2 = (int16_t)(((uint16_t)tpcparams[3] << 8) | (uint16_t)tpcparams[2]);
-	cparams.t3 = (int16_t)(((uint16_t)tpcparams[5] << 8) | (uint16_t)tpcparams[4]);
+    cparams.t1 =          (((uint16_t)tpcparams[1] << 8) | (uint16_t)tpcparams[0]);
+    cparams.t2 = (int16_t)(((uint16_t)tpcparams[3] << 8) | (uint16_t)tpcparams[2]);
+    cparams.t3 = (int16_t)(((uint16_t)tpcparams[5] << 8) | (uint16_t)tpcparams[4]);
 
-	cparams.p1 =          (((uint16_t)tpcparams[7]  << 8) | (uint16_t)tpcparams[6]);
-	cparams.p2 = (int16_t)(((uint16_t)tpcparams[9]  << 8) | (uint16_t)tpcparams[8]);
-	cparams.p3 = (int16_t)(((uint16_t)tpcparams[11] << 8) | (uint16_t)tpcparams[10]);
-	cparams.p4 = (int16_t)(((uint16_t)tpcparams[13] << 8) | (uint16_t)tpcparams[12]);
-	cparams.p5 = (int16_t)(((uint16_t)tpcparams[15] << 8) | (uint16_t)tpcparams[14]);
-	cparams.p6 = (int16_t)(((uint16_t)tpcparams[17] << 8) | (uint16_t)tpcparams[16]);
-	cparams.p7 = (int16_t)(((uint16_t)tpcparams[19] << 8) | (uint16_t)tpcparams[18]);
-	cparams.p8 = (int16_t)(((uint16_t)tpcparams[21] << 8) | (uint16_t)tpcparams[20]);
-	cparams.p9 = (int16_t)(((uint16_t)tpcparams[23] << 8) | (uint16_t)tpcparams[22]);
+    cparams.p1 =          (((uint16_t)tpcparams[7]  << 8) | (uint16_t)tpcparams[6]);
+    cparams.p2 = (int16_t)(((uint16_t)tpcparams[9]  << 8) | (uint16_t)tpcparams[8]);
+    cparams.p3 = (int16_t)(((uint16_t)tpcparams[11] << 8) | (uint16_t)tpcparams[10]);
+    cparams.p4 = (int16_t)(((uint16_t)tpcparams[13] << 8) | (uint16_t)tpcparams[12]);
+    cparams.p5 = (int16_t)(((uint16_t)tpcparams[15] << 8) | (uint16_t)tpcparams[14]);
+    cparams.p6 = (int16_t)(((uint16_t)tpcparams[17] << 8) | (uint16_t)tpcparams[16]);
+    cparams.p7 = (int16_t)(((uint16_t)tpcparams[19] << 8) | (uint16_t)tpcparams[18]);
+    cparams.p8 = (int16_t)(((uint16_t)tpcparams[21] << 8) | (uint16_t)tpcparams[20]);
+    cparams.p9 = (int16_t)(((uint16_t)tpcparams[23] << 8) | (uint16_t)tpcparams[22]);
 
-	cparams.h1 = tpcparams[25];
+    cparams.h1 = tpcparams[25];
 
-	cparams.h2 = (int16_t)(((uint16_t)hucparams[1] << 8) | (uint16_t)hucparams[0]);
-	cparams.h3 = hucparams[2];
+    cparams.h2 = (int16_t)(((uint16_t)hucparams[1] << 8) | (uint16_t)hucparams[0]);
+    cparams.h3 = hucparams[2];
 
-	int16_t h4_msb = (int16_t)(int8_t)hucparams[3] * 16;
-	int16_t h4_lsb = (int16_t)(hucparams[4] & 0x0F);
-	cparams.h4 = h4_msb | h4_lsb;
+    int16_t h4_msb = (int16_t)(int8_t)hucparams[3] * 16;
+    int16_t h4_lsb = (int16_t)(hucparams[4] & 0x0F);
+    cparams.h4 = h4_msb | h4_lsb;
 
-	int16_t h5_msb = (int16_t)(int8_t)hucparams[5] * 16;
-	int16_t h5_lsb = (int16_t)(hucparams[4] >> 4);
-	cparams.h5 = h5_msb | h5_lsb;
+    int16_t h5_msb = (int16_t)(int8_t)hucparams[5] * 16;
+    int16_t h5_lsb = (int16_t)(hucparams[4] >> 4);
+    cparams.h5 = h5_msb | h5_lsb;
 
-	cparams.h6 = (int8_t)hucparams[6];
+    cparams.h6 = (int8_t)hucparams[6];
 
-	cparams.loaded = true;
+    cparams.loaded = true;
 }
 
 /*
@@ -223,10 +224,10 @@ void BME280::LoadCalParams()
  */
 TPH32SensorData BME280::GetSensorData()
 {
-	TPH32SensorData sensdat;
-	uint8_t regdat[BME280_DATA_SIZE] {0};
+TPH32SensorData sensdat;
+uint8_t regdat[BME280_DATA_SIZE] {0};
 
-    this->GetRegs(BME280_DATA_START, regdat, BME280_DATA_SIZE);
+this->GetRegs(BME280_DATA_START, regdat, BME280_DATA_SIZE);
 
     sensdat.pressure = (
             ((uint32_t)regdat[BME280_PMSB_NDX]  << 12) |
@@ -243,7 +244,7 @@ TPH32SensorData BME280::GetSensorData()
     sensdat.humidity = (
             ((uint32_t)regdat[BME280_HMSB_NDX]  <<  8) |
              (uint32_t)regdat[BME280_HLSB_NDX]
-    		);
+            );
 
     return sensdat;
 }
@@ -273,8 +274,8 @@ TPH32SensorData BME280::GetSensorData()
  */
 TPH32CompData BME280::GetComp32FixedData()
 {
-	TPH32CompData   compdat;
-	TPH32SensorData sensdat = this->GetSensorData();
+    TPH32CompData   compdat;
+    TPH32SensorData sensdat = this->GetSensorData();
 
     compdat.timestamp   = sensdat.timestamp;
     compdat.temperature = this->Comp32FixedTemp(sensdat.temperature);
@@ -282,7 +283,6 @@ TPH32CompData BME280::GetComp32FixedData()
     compdat.humidity    = this->Comp32FixedHumid(sensdat.humidity);
 
     return compdat;
-
 }
 
 /*
@@ -303,8 +303,8 @@ TPH32CompData BME280::GetComp32FixedData()
  */
 TPHDoubleCompData BME280::GetCompDoubleData()
 {
-	TPHDoubleCompData compdat;
-	TPH32SensorData   sensdat = this->GetSensorData();
+    TPHDoubleCompData compdat;
+    TPH32SensorData   sensdat = this->GetSensorData();
 
     compdat.timestamp   = sensdat.timestamp;
     compdat.temperature = this->CompDoubleTemp(sensdat.temperature);
@@ -329,15 +329,15 @@ TPHDoubleCompData BME280::GetCompDoubleData()
  */
 void BME280::SetConfig()
 {
-	uint8_t configdat[6];
-	configdat[0] = BME280_R_CTRL_HUM;
-	configdat[1] = BME280_CTRL_HUM_SET;
-	configdat[2] = BME280_R_CONF;
-	configdat[3] = BME280_CONF_SET;
-	configdat[4] = BME280_R_CTRL_MEA;
-	configdat[5] = BME280_CTRL_MEA_SET;
+    uint8_t configdat[6];
+    configdat[0] = BME280_R_CTRL_HUM;
+    configdat[1] = BME280_CTRL_HUM_SET;
+    configdat[2] = BME280_R_CONF;
+    configdat[3] = BME280_CONF_SET;
+    configdat[4] = BME280_R_CTRL_MEA;
+    configdat[5] = BME280_CTRL_MEA_SET;
 
-	this->SetRegs(configdat, 6);
+    this->SetRegs(configdat, 6);
     this_thread::sleep_for(milliseconds(BME280_CONFIG_DELAY));
 }
 
@@ -361,11 +361,11 @@ void BME280::SetConfig()
  */
 void BME280::Force()
 {
-	uint8_t ctrl;
-	this->GetRegs(BME280_R_CTRL_MEA, &ctrl, 1);
+    uint8_t ctrl;
+    this->GetRegs(BME280_R_CTRL_MEA, &ctrl, 1);
 
-	uint8_t dat[] { BME280_R_CTRL_MEA, (uint8_t)(ctrl | BME280_MODE_FORCED) };
-	this->SetRegs(dat, 2);
+    uint8_t dat[] { BME280_R_CTRL_MEA, (uint8_t)(ctrl | BME280_MODE_FORCED) };
+    this->SetRegs(dat, 2);
 }
 
 /*
@@ -395,7 +395,7 @@ void BME280::Reset(bool reload)
     this_thread::sleep_for(milliseconds(BME280_RESET_DELAY));
 
     if (reload)
-    	this->SetConfig();
+        this->SetConfig();
 }
 
 /*
@@ -413,13 +413,12 @@ void BME280::Reset(bool reload)
  */
 void BME280::Sleep()
 {
-	uint8_t ctrl;
-	this->GetRegs(BME280_R_CTRL_MEA, &ctrl, 1);
+    uint8_t ctrl;
+    this->GetRegs(BME280_R_CTRL_MEA, &ctrl, 1);
 
-	uint8_t dat[] { BME280_R_CTRL_MEA, (uint8_t)(ctrl & BME280_MODE_MSK_OUT) };
-	this->SetRegs(dat, 2);
+    uint8_t dat[] { BME280_R_CTRL_MEA, (uint8_t)(ctrl & BME280_MODE_MSK_OUT) };
+    this->SetRegs(dat, 2);
 }
 
-
 } // namespace bosch_bme280
-
+```
