@@ -1,3 +1,4 @@
+```
 /*
  * bme280_data.cpp
  *
@@ -13,15 +14,10 @@
 
 #include "bme280_data.hpp"
 
-
 using namespace std;
 
 namespace bosch_bme280
 {
-
-
-// Calibration Parameters
-// -----------------------------------------------------------------
 
 /*
  * CalParams::CalParams()
@@ -38,32 +34,31 @@ namespace bosch_bme280
  */
 CalParams::CalParams()
 {
-	t1 = 0;
-	t2 = 0;
-	t3 = 0;
+    t1 = 0;
+    t2 = 0;
+    t3 = 0;
 
-	tfine = 0;
+    tfine = 0;
 
-	p1 = 0;
-	p2 = 0;
-	p3 = 0;
-	p4 = 0;
-	p5 = 0;
-	p6 = 0;
-	p7 = 0;
-	p8 = 0;
-	p9 = 0;
+    p1 = 0;
+    p2 = 0;
+    p3 = 0;
+    p4 = 0;
+    p5 = 0;
+    p6 = 0;
+    p7 = 0;
+    p8 = 0;
+    p9 = 0;
 
-	h1 = 0;
-	h2 = 0;
-	h3 = 0;
-	h4 = 0;
-	h5 = 0;
-	h6 = 0;
+    h1 = 0;
+    h2 = 0;
+    h3 = 0;
+    h4 = 0;
+    h5 = 0;
+    h6 = 0;
 
-	loaded = false;
+    loaded = false;
 }
-
 
 /*
  * TPH32SensorData::TPH32SensorData()
@@ -79,10 +74,10 @@ CalParams::CalParams()
  */
 TPH32SensorData::TPH32SensorData()
 {
-	timestamp   = time(nullptr);
-	temperature = 0;
-	pressure    = 0;
-	humidity    = 0;
+    timestamp   = time(nullptr);
+    temperature = 0;
+    pressure    = 0;
+    humidity    = 0;
 }
 
 /*
@@ -99,10 +94,10 @@ TPH32SensorData::TPH32SensorData()
  */
 TPH32CompData::TPH32CompData()
 {
-	timestamp   = time(nullptr);
-	temperature = 0;
-	pressure    = 0;
-	humidity    = 0;
+    timestamp   = time(nullptr);
+    temperature = 0;
+    pressure    = 0;
+    humidity    = 0;
 }
 
 /*
@@ -119,34 +114,11 @@ TPH32CompData::TPH32CompData()
  */
 TPHDoubleCompData::TPHDoubleCompData()
 {
-	timestamp   = time(nullptr);
-	temperature = 0.0;
-	pressure    = 0.0;
-	humidity    = 0.0;
+    timestamp   = time(nullptr);
+    temperature = 0.0;
+    pressure    = 0.0;
+    humidity    = 0.0;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 } // namespace bosch_bme280
+```
